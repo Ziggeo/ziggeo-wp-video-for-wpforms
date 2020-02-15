@@ -1,0 +1,6 @@
+/*
+    We have to be so precise because of the global rule in wpforms CSS
+*/
+.wpforms-form .ziggeowpforms_placeholder > iframe {
+    width: 100%;
+}
