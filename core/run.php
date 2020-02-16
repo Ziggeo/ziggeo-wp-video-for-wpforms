@@ -66,9 +66,6 @@ function ziggeowpforms_include_plugin_files() {
 	//Include the files only if we are running this plugin
 	include_once(ZIGGEOWPFORMS_ROOT_PATH . 'core/simplifiers.php');
 	include_once(ZIGGEOWPFORMS_ROOT_PATH . 'core/assets.php');
-	include_once(ZIGGEOWPFORMS_ROOT_PATH . 'admin/dashboard.php');
-	include_once(ZIGGEOWPFORMS_ROOT_PATH . 'admin/plugins.php');
-	include_once(ZIGGEOWPFORMS_ROOT_PATH . 'admin/validation.php');
 
 	//Fields specific
 	require_once(ZIGGEOWPFORMS_ROOT_PATH . 'extend/class-video-recorder.php');
