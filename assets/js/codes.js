@@ -1,16 +1,19 @@
 //Function to create an iframe to hold our embedding on the front page, allowing us to make them present without the WPForms changing the way it looks
 function createIframeEmbedding(element_id, embedding_tag, parameters_code) {
+
 	//Create dynamic iframe
 	var iframe = document.createElement('iframe');
 
 	//1. Grab the WP Ziggeo codes
 	//var resources_info = ziggeo_p_assets_prepare_raw(); (PHP ONLY - skip for now to do a proper POC)
-	//@HERE - change this
-	var code = ziggeowpformsGetIframeHeaderCode();
+
+	var code = '<script src="' + ZiggeoWP.url_jquery + '"></script>';
+	//code += '<script>$.noConflict();</script>';
+	code += ziggeowpformsGetIframeHeaderCode();
 
 	code += '<script>' + 
-				'var ZiggeoWP = ' + ZiggeoWP.toSource() + ';' +
-				'var ziggeo_app = new ZiggeoApi.V2.Application(' + ziggeoGetApplicationOptions().toSource() + ');' +
+				'var ZiggeoWP = ' + JSON.stringify(ZiggeoWP) + ';' +
+				'var ziggeo_app = new ZiggeoApi.V2.Application(' + JSON.stringify(ziggeoGetApplicationOptions()) + ');' +
 			'</script>';
 
 	//We should create the code at this point.

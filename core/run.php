@@ -63,6 +63,13 @@ function ziggeowpforms_get_version() {
 //Include all of the needed plugin files
 function ziggeowpforms_include_plugin_files() {
 
+	//Add the URL to jQuery
+	add_action('ziggeo_add_to_ziggeowp_object', function() {
+		?>
+		url_jquery: "<?php echo includes_url() . 'js/jquery/jquery.js'; ?>",
+		<?php
+	});
+
 	//Include the files only if we are running this plugin
 	include_once(ZIGGEOWPFORMS_ROOT_PATH . 'core/simplifiers.php');
 	include_once(ZIGGEOWPFORMS_ROOT_PATH . 'core/assets.php');

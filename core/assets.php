@@ -14,10 +14,16 @@ function ziggeowpforms_global() {
 			return '' +
 			<?php
 				for($i = 0, $c = count($code); $i < $c; $i++) {
-					?>
-					'<' + 'script src="<?php echo $code[$i]['js']; ?>"></' + 'script' + '>' +
-					'<' + 'link rel="stylesheet" href="<?php echo $code[$i]['css'];?>" media="all" />' +
-					<?php
+					if(isset($code[$i]['js'])) {
+						?>
+						'<' + 'script src="<?php echo $code[$i]['js']; ?>"></' + 'script' + '>' +
+						<?php
+					}
+					if(isset($code[$i]['css'])) {
+						?>
+						'<' + 'link rel="stylesheet" href="<?php echo $code[$i]['css'];?>" media="all" />' +
+						<?php
+					}
 				}
 				?>
 				'';
