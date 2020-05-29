@@ -353,7 +353,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'type'			=> 'text',
 				'name'			=> 'meta_profile',
 				'value'			=> $field['meta_profile'],
-				'placeholder'	=> 'Video Profile Token'
+				'placeholder'	=> 'Meta Profile Token'
 			]);
 
 			// Client auth

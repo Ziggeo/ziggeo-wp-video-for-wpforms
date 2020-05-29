@@ -234,11 +234,11 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 			]);
 
 			// What template should be used?
-			ziggeowpforms_create_builder_option_field($field['id'], 'message', 'Write template name to use', [
+			ziggeowpforms_create_builder_option_field($field['id'], 'template_name', 'Write template name to use', [
 				'html_type' 	=> 'input',
 				'class'			=> 'ziggeowpforms-videowall-option',
-				'name'			=> 'message',
-				'value'			=> $field['message'],
+				'name'			=> 'template_name',
+				'value'			=> $field['template_name'],
 				'type'			=> 'text'
 			]);
 

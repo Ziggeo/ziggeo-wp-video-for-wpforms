@@ -4,32 +4,35 @@
 defined('ABSPATH') or die();
 
 function ziggeowpforms_global() {
-	//Output the function that provides us with the code we can use for iframes
-	?>
-	<script>
-		function ziggeowpformsGetIframeHeaderCode() {
-			<?php
-				$code = ziggeo_p_assets_get_raw();
-			?>
-			return '' +
-			<?php
-				for($i = 0, $c = count($code); $i < $c; $i++) {
-					if(isset($code[$i]['js'])) {
-						?>
-						'<' + 'script src="<?php echo $code[$i]['js']; ?>"></' + 'script' + '>' +
-						<?php
-					}
-					if(isset($code[$i]['css'])) {
-						?>
-						'<' + 'link rel="stylesheet" href="<?php echo $code[$i]['css'];?>" media="all" />' +
-						<?php
-					}
-				}
+
+	add_action('wp_print_footer_scripts', function() {
+		//Output the function that provides us with the code we can use for iframes
+		?>
+		<script>
+			function ziggeowpformsGetIframeHeaderCode() {
+				<?php
+					$code = ziggeo_p_assets_get_raw();
 				?>
-				'';
-		}
-	</script>
-	<?php
+				return '' +
+				<?php
+					for($i = 0, $c = count($code); $i < $c; $i++) {
+						if(isset($code[$i]['js'])) {
+							?>
+							'<' + 'script src="<?php echo $code[$i]['js']; ?>"></' + 'script' + '>' +
+							<?php
+						}
+						if(isset($code[$i]['css'])) {
+							?>
+							'<' + 'link rel="stylesheet" href="<?php echo $code[$i]['css'];?>" media="all" />' +
+							<?php
+						}
+					}
+					?>
+					'';
+			}
+		</script>
+		<?php
+	});
 
 	//local assets
 	wp_register_style('ziggeowpforms-css', ZIGGEOWPFORMS_ROOT_URL . 'assets/css/styles.css', array());    
@@ -50,5 +53,6 @@ function ziggeowpforms_admin() {
 
 add_action('wp_enqueue_scripts', "ziggeowpforms_global");
 add_action('admin_enqueue_scripts', "ziggeowpforms_admin");
+
 
 ?>
