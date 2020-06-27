@@ -2,8 +2,8 @@
 Contributors: oliverfriedmann, baned, carloscsz409
 Tags: ziggeo, video, video field, form builder, video form, WPForms
 Requires at least: 3.0.1
-Tested up to: 5.4.1
-Stable tag: 1.2
+Tested up to: 5.4.2
+Stable tag: 1.3
 Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -60,10 +60,14 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 
 == Upgrade Notice ==
 
-= 1.2. =
-* The code output is changed to make it less likely to cause any issues
+= 1.3 =
+* Fixed a typo in the settings
+* Changed the addon / integration code to use the new system
 
 == Changelog ==
+
+= 1.2. =
+* The code output is changed to make it less likely to cause any issues
 
 = 1.1. =
 * Added small fix to fix the case where toSource was not available and causing issue.
