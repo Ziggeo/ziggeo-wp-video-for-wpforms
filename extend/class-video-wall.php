@@ -221,7 +221,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'no_videos',
 				'value'			=> $field['no_videos'],
-				'options'		=> ['ShowMessage', "ShowTeamplate", "HideWall"]
+				'options'		=> ['ShowMessage', "ShowTemplate", "HideWall"]
 			]);
 
 			// What message should we show?
