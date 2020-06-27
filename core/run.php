@@ -17,9 +17,9 @@
 defined('ABSPATH') or die();
 
 //Show the entry in the integrations panel
-add_action('ziggeo_list_integration', function() {
+add_filter('ziggeo_list_integration', function($integrations) {
 
-	$data = array(
+	$current = array(
 		//This section is related to the plugin that we are combining with the Ziggeo, not the plugin/module that does it
 		'integration_title'		=> 'WPForms', //Name of the plugin
 		'integration_origin'	=> 'https://wpforms.com', //Where you can download it from
@@ -33,17 +33,20 @@ add_action('ziggeo_list_integration', function() {
 		'slug'					=> 'ziggeo-video-for-wpforms', //slug of the module
 		//URL to image (not path). Can be of the original plugin, or the bridge
 		'logo'					=> ZIGGEOWPFORMS_ROOT_URL . 'assets/images/logo.png',
+		'version'				=> ZIGGEOWPFORMS_ROOT_PATH
 	);
 
 	//Check current Ziggeo version
 	if(ziggeowpforms_run() === true) {
-		$data['status'] = true;
+		$current['status'] = true;
 	}
 	else {
-		$data['status'] = false;
+		$current['status'] = false;
 	}
 
-	echo zigeo_integration_present_me($data);
+	$integrations[] = $current;
+
+	return $integrations;
 });
 
 add_action('plugins_loaded', function() {
