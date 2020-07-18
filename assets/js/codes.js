@@ -1,5 +1,13 @@
 //Function to create an iframe to hold our embedding on the front page, allowing us to make them present without the WPForms changing the way it looks
-function createIframeEmbedding(element_id, embedding_tag, parameters_code) {
+function ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameters_code) {
+
+	if(typeof ziggeowpformsGetIframeHeaderCode === 'undefined') {
+		window.addEventListener('load', function() {
+			return ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameters_code);
+		});
+
+		return;
+	}
 
 	//Create dynamic iframe
 	var iframe = document.createElement('iframe');
@@ -26,6 +34,9 @@ function createIframeEmbedding(element_id, embedding_tag, parameters_code) {
 		code = code.replace( new RegExp('jQuery(document).ready('.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), "g"), 'window.addEventListener("load",' );
 
 	}
+	else if(embedding_tag === 'ziggeotemplate') {
+		code += parameters_code;
+	}
 	else {
 		code += '<' + embedding_tag + ' id="embedding" ' + parameters_code + '></' + embedding_tag + '>';
 	}
@@ -36,7 +47,7 @@ function createIframeEmbedding(element_id, embedding_tag, parameters_code) {
 	//If the element is not yet available, lets try soon instead of continuing.
 	if(typeof placeholder === 'undefined' || placeholder === null) {
 		setTimeout(function(){
-			createIframeEmbedding(element_id, embedding_tag, parameters_code)
+			ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameters_code)
 			return true;
 		}, 2000);
 

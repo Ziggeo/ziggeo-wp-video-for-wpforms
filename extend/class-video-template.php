@@ -49,11 +49,14 @@ class WPForms_Field_Video_Template extends WPForms_Field {
 			);
 
 		?>
-		<div class="ziggeowpforms-templates"></div>
+		<div id="ziggeowpforms-template-<?php echo $field['id']; ?>" class="ziggeowpforms_placeholder ziggeowpforms-templates"></div>
 		<script>
-			createIframeEmbedding('ziggeowpforms-templates', 'ziggeotemplate',
-									'<?php echo ziggeo_p_content_parse_templates( '[ziggeo ' . ziggeo_p_template_params($field['template_name']), '[ziggeo ' . ziggeo_p_template_params($field['template_name']) ); ?>'
-			);
+			window.addEventListener('load', function() {
+				ziggeowpformsCreateIframeEmbedding('ziggeowpforms-template-<?php echo $field['id']; ?>',
+													'ziggeotemplate',
+													'<?php echo ziggeo_p_content_parse_templates( '[ziggeo ' . ziggeo_p_template_params($field['template_name']), '[ziggeo ' . ziggeo_p_template_params($field['template_name']) ); ?>'
+				);
+			});
 		</script>
 		<?php
 	}

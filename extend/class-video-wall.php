@@ -52,8 +52,8 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 		<div id="ziggeowpforms-videowall-<?php echo $field['id']; ?>" class="ziggeowpforms_placeholder"></div>
 		<script>
 			window.addEventListener('load', function() {
-				createIframeEmbedding('ziggeowpforms-videowall-<?php echo $field['id']; ?>', 'ziggeovideowall',
-										'<?php echo ziggeowpforms_get_videowall_code($field); ?>'
+				ziggeowpformsCreateIframeEmbedding('ziggeowpforms-videowall-<?php echo $field['id']; ?>', 'ziggeovideowall',
+					'<?php echo ziggeowpforms_get_videowall_code($field); ?>'
 				);
 			});
 		</script>

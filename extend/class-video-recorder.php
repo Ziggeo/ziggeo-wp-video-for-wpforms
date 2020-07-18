@@ -51,8 +51,8 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 		<div id="ziggeowpforms-videorecorder-<?php echo $field['id']; ?>" class="ziggeowpforms_placeholder"></div>
 		<script>
 			window.addEventListener('load', function() {
-				createIframeEmbedding('ziggeowpforms-videorecorder-<?php echo $field['id']; ?>', 'ziggeorecorder',
-										'<?php echo ziggeowpforms_get_recorder_code($field); ?>'
+				ziggeowpformsCreateIframeEmbedding('ziggeowpforms-videorecorder-<?php echo $field['id']; ?>', 'ziggeorecorder',
+					'<?php echo ziggeowpforms_get_recorder_code($field); ?>'
 				);
 			});
 		</script>

@@ -49,8 +49,8 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 		<div id="ziggeowpforms-videoplayer-<?php echo $field['id']; ?>" class="ziggeowpforms_placeholder"></div>
 		<script>
 			window.addEventListener('load', function() {
-				createIframeEmbedding('ziggeowpforms-videoplayer-<?php echo $field['id']; ?>', 'ziggeoplayer',
-										'<?php echo ziggeowpforms_get_player_code($field); ?>'
+				ziggeowpformsCreateIframeEmbedding('ziggeowpforms-videoplayer-<?php echo $field['id']; ?>', 'ziggeoplayer',
+					'<?php echo ziggeowpforms_get_player_code($field); ?>'
 				);
 			});
 		</script>
