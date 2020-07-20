@@ -33,7 +33,7 @@ add_filter('ziggeo_list_integration', function($integrations) {
 		'slug'					=> 'ziggeo-video-for-wpforms', //slug of the module
 		//URL to image (not path). Can be of the original plugin, or the bridge
 		'logo'					=> ZIGGEOWPFORMS_ROOT_URL . 'assets/images/logo.png',
-		'version'				=> ZIGGEOWPFORMS_ROOT_PATH
+		'version'				=> ZIGGEOWPFORMS_VERSION
 	);
 
 	//Check current Ziggeo version
