@@ -196,7 +196,7 @@ function ziggeowpforms_get_recorder_code($field) {
 
 	//if popup is set
 	if(isset($field['popup'])) {
-		$code .= ' ziggeo-height="' . $field['height'] . '" ';
+		$code .= ' ziggeo-popup="' . $field['popup'] . '" ';
 
 		//if popup_width is set
 		if(isset($field['popup_width'])) {

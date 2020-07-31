@@ -3,7 +3,7 @@ Contributors: oliverfriedmann, baned, carloscsz409, natashacalleia
 Tags: ziggeo, video, video field, form builder, video form, WPForms
 Requires at least: 3.0.1
 Tested up to: 5.4.2
-Stable tag: 1.4
+Stable tag: 1.5
 Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -60,12 +60,16 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 
 == Upgrade Notice ==
 
+= 1.5 =
+* Removed unneeded file
+* Fixed a typo which would result in popup not working as expected
+
+== Changelog ==
+
 = 1.4 =
 * Fixed the parsing within the templates field where it could load to the error depending on how long the difference is in output of different sections of website. Now it will work right regardless of it.
 * Added additional resilience in case anyone called the same function manually in their own plugin.
 * Changed the function name from `createIframeEmbedding` to `ziggeowpformsCreateIframeEmbedding` to make sure there are no conflicts with third party plugins.
-
-== Changelog ==
 
 = 1.3 =
 * Fixed a typo in the settings
