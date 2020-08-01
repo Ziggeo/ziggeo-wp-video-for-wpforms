@@ -63,6 +63,7 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 = 1.5 =
 * Removed unneeded file
 * Fixed a typo which would result in popup not working as expected
+* Added support for custom tags. Add the ID of the field (comma separated list accepted) and values from these fields will be used as additional tags.
 
 == Changelog ==
 

@@ -63,6 +63,8 @@ function ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameter
 	iframe.contentWindow.document.write(code);
 	iframe.contentWindow.document.close();
 
+	var out_doc = document;
+
 	iframe.addEventListener('load', function(e) {
 		//remove the borders
 		var _iframe = this;
@@ -74,12 +76,12 @@ function ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameter
 			//Set the height one more time
 			ziggeowpforms_iframe_noscroll(_iframe);
 
+			var embedding_element = _iframe.contentDocument.getElementById('embedding');
+
 			if(embedding_tag === 'ziggeorecorder') {
 
 				//Add embedding code
-				var embedding = ZiggeoApi.V2.Recorder.findByElement(
-					_iframe.contentDocument.getElementById('embedding')
-				);
+				var embedding = ZiggeoApi.V2.Recorder.findByElement(embedding_element);
 
 				//Add verified code
 				embedding.on("verified", function() {
@@ -87,13 +89,45 @@ function ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameter
 					placeholder.previousElementSibling.value = '[ziggeoplayer]' + 
 																	embedding.get("video") +
 																	'[/ziggeoplayer]'
+
+					var tags = embedding_element.getAttribute('data-wpf-custom-tags');
+
+					if(tags) {
+
+						var _tags = [];
+						tags = tags.split(',');
+
+						for(i = 0, c = tags.length; i < c; i++) {
+							try {
+								var value = out_doc.getElementById(tags[i]).value;
+
+								if(value.trim() !== '') {
+									_tags.push(value);
+								}
+							}
+							catch(err) {
+								console.log(err);
+							}
+						}
+
+						if(_tags.length > 0) {
+
+							if(embedding.get('tags') !== '' && embedding.get('tags') !== null) {
+								_tags.concat(embedding.get('tags'));
+							}
+
+							//Create tags for the video
+							ZiggeoApi.Videos.update(embedding.get("video"), {
+								tags: _tags
+							});
+						}
+
+					}
 				});
 			}
 			else if(embedding_tag === 'ziggeoplayer') {
 
-				var embedding = ZiggeoApi.V2.Player.findByElement(
-					_iframe.contentDocument.getElementById('embedding')
-				);
+				var embedding = ZiggeoApi.V2.Player.findByElement(embedding_element);
 
 				embedding.on('ended', function() {
 					placeholder.previousElementSibling.value = 'seen';
@@ -112,6 +146,7 @@ function ziggeowpforms_iframe_noscroll(iframe_element) {
 
 	//adding a bit more height as pixel perfect can bite
 	iframe_element.style.height = iframe_body.scrollHeight + 10 + 'px';
+	iframe_element.style.width = '100%';
 	iframe_body.style.overflowX = 'hidden';
 	iframe_body.style.overflowY = 'hidden';
 }

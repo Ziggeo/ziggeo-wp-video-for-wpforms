@@ -38,21 +38,27 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 		$primary['data']['form-id']  = $form_data['id'];
 		$primary['data']['field-id'] = $field['id'];
 
-		?>
-		<?php
-			// Primary field.
-			// This way we can save the code we got back into a field and make it work with all the usual form conditions while our embedding field is shown andn not saved
-			printf(
-				'<input type="hidden" %s %s>',
-				wpforms_html_attributes( $primary['id'], $primary['class'], $primary['data'], $primary['attr'] ),
-				$primary['required']
-			);
+		// Primary field.
+		// This way we can save the code we got back into a field and make it work with all the usual form conditions while our embedding field is shown andn not saved
+		printf(
+			'<input type="hidden" %s %s>',
+			wpforms_html_attributes( $primary['id'], $primary['class'], $primary['data'], $primary['attr'] ),
+			$primary['required']
+		);
+
+		//Custom tags
+		$wpf_tags = 'data-wpf-custom-tags=""';
+
+		if(isset($field['wpf_custom_tags'])) {
+			$wpf_tags = 'data-wpf-custom-tags="' . $field['wpf_custom_tags'] . '"';
+		}
+
 		?>
 		<div id="ziggeowpforms-videorecorder-<?php echo $field['id']; ?>" class="ziggeowpforms_placeholder"></div>
 		<script>
 			window.addEventListener('load', function() {
 				ziggeowpformsCreateIframeEmbedding('ziggeowpforms-videorecorder-<?php echo $field['id']; ?>', 'ziggeorecorder',
-					'<?php echo ziggeowpforms_get_recorder_code($field); ?>'
+					'<?php echo $wpf_tags . ' ' . ziggeowpforms_get_recorder_code($field); ?>'
 				);
 			});
 		</script>
@@ -426,6 +432,20 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'name'			=> 'custom_data',
 				'value'			=> $field['custom_data'],
 				'placeholder'	=> 'Custom data'
+			]);
+
+			if(!isset($field['wpf_custom_tags'])) {
+				$field['wpf_custom_tags'] = '';
+			}
+
+			// Custom Tags
+			ziggeowpforms_create_builder_option_field($field['id'], 'wpf_custom_tags', 'Use custom tags based on fields on form', [
+				'html_type' 	=> 'input',
+				'class'			=> 'ziggeowpforms-recorder-option',
+				'type'			=> 'text',
+				'name'			=> 'wpf_custom_tags',
+				'value'			=> $field['wpf_custom_tags'],
+				'placeholder'	=> 'Set custom tags'
 			]);
 
 
