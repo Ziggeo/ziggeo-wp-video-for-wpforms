@@ -3,7 +3,7 @@ Contributors: oliverfriedmann, baned, carloscsz409, natashacalleia
 Tags: ziggeo, video, video field, form builder, video form, WPForms
 Requires at least: 3.0.1
 Tested up to: 5.4.2
-Stable tag: 1.5
+Stable tag: 1.6
 Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -60,12 +60,15 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 
 == Upgrade Notice ==
 
+= 1.6 =
+* Improvement: API is now using only V2 calls
+
+== Changelog ==
+
 = 1.5 =
 * Removed unneeded file
 * Fixed a typo which would result in popup not working as expected
 * Added support for custom tags. Add the ID of the field (comma separated list accepted) and values from these fields will be used as additional tags.
-
-== Changelog ==
 
 = 1.4 =
 * Fixed the parsing within the templates field where it could load to the error depending on how long the difference is in output of different sections of website. Now it will work right regardless of it.

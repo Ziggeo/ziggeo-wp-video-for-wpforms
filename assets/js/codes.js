@@ -117,9 +117,7 @@ function ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameter
 							}
 
 							//Create tags for the video
-							ZiggeoApi.Videos.update(embedding.get("video"), {
-								tags: _tags
-							});
+							ziggeo_app.videos.update(data.embedding_object.get("video"), { tags: _tags });
 						}
 
 					}
