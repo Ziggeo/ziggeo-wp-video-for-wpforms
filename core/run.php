@@ -114,6 +114,15 @@ function ziggeowpforms_run() {
 
 	//Needed during activation of the plugin
 	if(!function_exists('ziggeo_get_version')) {
+
+		add_action( 'admin_notices', function() {
+			?>
+			<div class="error notice">
+				<p><?php _e( 'Please install <a href="https://wordpress.org/plugins/ziggeo/">Ziggeo plugin</a>. It is required for this plugin (Ziggeo Video for WPForms) to work properly!', 'ziggeowpforms' ); ?></p>
+			</div>
+			<?php
+		});
+
 		return false;
 	}
 

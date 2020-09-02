@@ -62,6 +62,7 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 
 = 1.6 =
 * Improvement: API is now using only V2 calls
+* Improvement: Added a notification if core plugin is not installed instead of silently stopping the load.
 
 == Changelog ==
 
