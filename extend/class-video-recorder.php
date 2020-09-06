@@ -53,12 +53,22 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 			$wpf_tags = 'data-wpf-custom-tags="' . $field['wpf_custom_tags'] . '"';
 		}
 
+		//dyn custom data
+		$wpf_data = 'data-custom-data=""';
+
+		if(isset($field['wpf_custom_data'])) {
+			$wpf_data = 'data-custom-data="' . $field['wpf_custom_data'] . '"';
+		}
+
 		?>
 		<div id="ziggeowpforms-videorecorder-<?php echo $field['id']; ?>" class="ziggeowpforms_placeholder"></div>
 		<script>
 			window.addEventListener('load', function() {
 				ziggeowpformsCreateIframeEmbedding('ziggeowpforms-videorecorder-<?php echo $field['id']; ?>', 'ziggeorecorder',
-					'<?php echo $wpf_tags . ' ' . ziggeowpforms_get_recorder_code($field); ?>'
+					'<?php
+						echo $wpf_tags . ' ' . $wpf_data . ' ' .
+						ziggeowpforms_get_recorder_code($field);
+					?>'
 				);
 			});
 		</script>
@@ -446,6 +456,20 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'name'			=> 'wpf_custom_tags',
 				'value'			=> $field['wpf_custom_tags'],
 				'placeholder'	=> 'Set custom tags'
+			]);
+
+			if(!isset($field['wpf_custom_data'])) {
+				$field['wpf_custom_data'] = '';
+			}
+
+			// Custom data
+			ziggeowpforms_create_builder_option_field($field['id'], 'wpf_custom_data', 'Create custom data based on the other fileds on the form.', [
+				'html_type' 	=> 'input',
+				'class'			=> 'ziggeowpforms-recorder-option',
+				'type'			=> 'text',
+				'name'			=> 'wpf_custom_data',
+				'value'			=> $field['wpf_custom_data'],
+				'placeholder'	=> 'field1:element_id1,field2:element_id2'
 			]);
 
 

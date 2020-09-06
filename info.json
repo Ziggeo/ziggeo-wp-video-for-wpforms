@@ -8,13 +8,13 @@
 	"plugin": {
 		"name": "ziggeo-video-for-wpforms",
 		"title": "Ziggeo Video for WPForms",
-		"version": "1.6",
+		"version": "1.7",
 		"author": "Ziggeo",
 		"logo": "https://raw.githubusercontent.com/Ziggeo/ziggeo-wp-video-for-wpforms/master/assets/images/logo.png",
 		"contributors": "oliverfriedmann, baned, carloscsz409",
 		"tags": "ziggeo, video, video field, form builder, video form, WPForms",
 		"description": "This plugin brings video player and recorder (including screen recording) to your WPForms by utilizing the powerful and award winning Ziggeo for video.",
-		"highlight": "Typo fix and addoption of new coding for addons",
+		"highlight": "Dynamically create custom data based on your form fields",
 		"info_url": "https://raw.githubusercontent.com/Ziggeo/ziggeo-wp-video-for-wpforms/master/info.json",
 		"addon_url": "https://ziggeo.com/integrations/wordpress/wpforms",
 		"docs_url": "https://ziggeo.com/docs/integrations/wordpress/wpforms"

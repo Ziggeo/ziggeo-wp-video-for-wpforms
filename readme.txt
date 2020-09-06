@@ -3,7 +3,7 @@ Contributors: oliverfriedmann, baned, carloscsz409, natashacalleia
 Tags: ziggeo, video, video field, form builder, video form, WPForms
 Requires at least: 3.0.1
 Tested up to: 5.4.2
-Stable tag: 1.6
+Stable tag: 1.7
 Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -49,6 +49,27 @@ Integration happens within your website. All the data you gather will still be a
 
 As always we will host multimedia that is captured within your Ziggeo account and link to the same will be used as a submitted value on your form.
 
+= How to use Dynamic Custom Data =
+
+Ziggeo internally supports the ability of adding custom data to your videos. This can be anything as long as it is provided as valid JSON field. Now with form builders you might want to add custom data based on the data in the fields as well. To do this, we bring you dynamic custom data field.
+
+* Please note that this field should not be used in combination with the custom data. You should use either `Custom Data` or `Dynamic Custom Data`.
+
+The way you would set it up is by using key:field_id. For example if you want your JSON to be formed as:
+
+[javascript]
+{
+	"first_name": "Mike",
+	"last_name": "Wazowski"
+}
+[/javascript]
+
+and let's say that your first name has `<input id="wpforms-66-field_2" ...>` and last name has `<input id="wpforms-66-field_3" ...>`. It means that we need `wpforms-66-field_2` and `wpforms-66-field_3` to get those values. So our field can be set as:
+
+`first_name:wpforms-66-field_2,last_name:wpforms-66-field_3`
+
+As you save your recorder field it will remember this and try to find the values. If the fields with ID are not found, the value will be saved as "" (empty string)
+
 = How can I get some support =
 
 We provide active support to all that have any questions or need any assistance with our plugin or our service.
@@ -60,11 +81,16 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 
 == Upgrade Notice ==
 
+= 1.7 =
+* Fixed: Videowalls now load properly within the wpforms. Depending on version of Videowalls plugin you might not have experienced any issues so far.
+* Added: JS Hooks notification for video verified. Fires outside of iframe making it easy to hook to the same.
+* Added: Support for Dynamic custom data
+
+== Changelog ==
+
 = 1.6 =
 * Improvement: API is now using only V2 calls
 * Improvement: Added a notification if core plugin is not installed instead of silently stopping the load.
-
-== Changelog ==
 
 = 1.5 =
 * Removed unneeded file
