@@ -2,7 +2,7 @@
 Contributors: oliverfriedmann, baned, carloscsz409, natashacalleia
 Tags: ziggeo, video, video field, form builder, video form, WPForms
 Requires at least: 3.0.1
-Tested up to: 5.4.2
+Tested up to: 5.6
 Stable tag: 1.7
 Requires PHP: 5.2.4
 License: GPLv3 or later
