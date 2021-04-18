@@ -134,6 +134,16 @@
 						placeholder.previousElementSibling.value = 'seen';
 					});
 				}
+
+				//Make sure we are keeping it up to date
+				new ResizeObserver(function() {
+					ziggeowpforms_iframe_noscroll(_iframe);
+				}).observe(embedding.firstChild);
+
+				//Addition, while the bug is in affect: https://bugzilla.mozilla.org/show_bug.cgi?id=1689099
+				embedding.firstChild.addEventListener('pointerover', function() {
+					ziggeowpforms_iframe_noscroll(_iframe, embedding.firstChild.getBoundingClientRect().height.toFixed());
+				});
 			}, 2000);
 
 			window.ziggeowpformsSaveToken();
@@ -143,14 +153,21 @@
 	}
 
 	//Remove scrollbars from the iframe
-	function ziggeowpforms_iframe_noscroll(iframe_element) {
+	function ziggeowpforms_iframe_noscroll(iframe_element, height) {
 
 		//this way it works for IE as well
 		var iframe_document = iframe_element.contentDocument || iframe_element.contentWindow.document;
 		var iframe_body = iframe_document.querySelector("body");
 
+		if(height) {
+			iframe_body.scrollHeight = height;
+		}
+		else {
+			height = iframe_body.scrollHeight;
+		}
+
 		//adding a bit more height as pixel perfect can bite
-		iframe_element.style.height = iframe_body.scrollHeight + 10 + 'px';
+		iframe_element.style.height = (height * 1 + 10) + 'px';
 		iframe_element.style.width = '100%';
 		iframe_body.style.overflowX = 'hidden';
 		iframe_body.style.overflowY = 'hidden';

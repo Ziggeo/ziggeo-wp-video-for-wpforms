@@ -3,7 +3,7 @@ Contributors: oliverfriedmann, baned, carloscsz409, natashacalleia
 Tags: ziggeo, video, video field, form builder, video form, WPForms
 Requires at least: 3.0.1
 Tested up to: 5.6
-Stable tag: 1.7
+Stable tag: 1.8
 Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -81,12 +81,15 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 
 == Upgrade Notice ==
 
+= 1.8 =
+* Fixed: Added a change to iframe resizing to make it resized properly.
+
+== Changelog ==
+
 = 1.7 =
 * Fixed: Videowalls now load properly within the wpforms. Depending on version of Videowalls plugin you might not have experienced any issues so far.
 * Added: JS Hooks notification for video verified. Fires outside of iframe making it easy to hook to the same.
 * Added: Support for Dynamic custom data
-
-== Changelog ==
 
 = 1.6 =
 * Improvement: API is now using only V2 calls
