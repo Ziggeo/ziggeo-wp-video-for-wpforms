@@ -166,6 +166,13 @@
 			height = iframe_body.scrollHeight;
 		}
 
+		var current_height = (iframe_element.style.height.replace('px', '')) * 1;
+
+		//Just to make sure that resizing does not happen because of our resizing..happens in Chrome only.
+		if(current_height === height && current_height >= (iframe_element.getBoundingClientRect().width / 2)) {
+			return false;
+		}
+
 		//adding a bit more height as pixel perfect can bite
 		iframe_element.style.height = (height * 1 + 10) + 'px';
 		iframe_element.style.width = '100%';

@@ -4,7 +4,7 @@ Plugin Name: Ziggeo Video for WPForms
 Plugin URI: https://ziggeo.com/integrations/wordpress
 Description: Add the Powerful Ziggeo video service platform to your WPForms form builder and forms
 Author: Ziggeo
-Version: 1.8
+Version: 1.8.1
 Author URI: https://ziggeo.com
 */
 
@@ -19,7 +19,7 @@ define('ZIGGEOWPFORMS_ROOT_PATH', plugin_dir_path(__FILE__) );
 define('ZIGGEOWPFORMS_ROOT_URL', plugins_url('', __FILE__) . '/');
 
 //plugin version - this way other plugins can get it as well and we will be updating this file for each version change as is
-define('ZIGGEOWPFORMS_VERSION', '1.8');
+define('ZIGGEOWPFORMS_VERSION', '1.8.1');
 
 //Include files
 include_once(ZIGGEOWPFORMS_ROOT_PATH . 'core/run.php');
