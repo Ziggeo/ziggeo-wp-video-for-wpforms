@@ -35,7 +35,7 @@ function ziggeowpforms_global() {
 	});
 
 	//local assets
-	wp_register_style('ziggeowpforms-css', ZIGGEOWPFORMS_ROOT_URL . 'assets/css/styles.css', array());    
+	wp_register_style('ziggeowpforms-css', ZIGGEOWPFORMS_ROOT_URL . 'assets/css/styles.css', array());
 	wp_enqueue_style('ziggeowpforms-css');
 
 	wp_register_script('ziggeowpforms-js', ZIGGEOWPFORMS_ROOT_URL . 'assets/js/codes.js', array());
@@ -46,6 +46,11 @@ function ziggeowpforms_global() {
 function ziggeowpforms_admin() {
 
 	ziggeowpforms_global();
+
+	if(version_compare(ziggeowpforms_get_version(), '1.6.8.1') >= 0) {
+		wp_register_style('ziggeowpforms-admin-css', ZIGGEOWPFORMS_ROOT_URL . 'assets/css/admin-styles.css', array());
+		wp_enqueue_style('ziggeowpforms-admin-css');
+	}
 
 	wp_register_script('ziggeowpforms-adminjs', ZIGGEOWPFORMS_ROOT_URL . 'assets/js/admin-codes.js', array());
 	wp_enqueue_script('ziggeowpforms-adminjs');

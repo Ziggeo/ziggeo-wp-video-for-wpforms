@@ -255,8 +255,8 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 			ziggeowpforms_create_builder_option_field($field['id'], 'videos_to_show', 'Type of videos to show', [
 				'html_type' 	=> 'input',
 				'class'			=> 'ziggeowpforms-videowall-option',
-				'name'			=> 'template_name',
-				'value'			=> $field['videos_to_show'],
+				'name'			=> 'videos_to_show',
+				'value'			=> (isset($field['videos_to_show'])) ? $field['videos_to_show'] : '',
 				'type'			=> 'text',
 				'placeholder'	=> 'POST ID or other video tag'
 			]);

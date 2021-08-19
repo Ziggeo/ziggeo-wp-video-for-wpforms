@@ -1,0 +1,49 @@
+.wpforms-field-option-video-player [id^="wpforms-field-option-style-"],
+.wpforms-field-option-video-wall [id^="wpforms-field-option-style-"],
+.wpforms-field-option-video-recorder [id^="wpforms-field-option-style-"] {
+	position: relative;
+}
+.wpforms-field-option-video-player .active + [id^="wpforms-field-option-style-"],
+.wpforms-field-option-video-player .active + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-inner,
+.wpforms-field-option-video-wall .active + [id^="wpforms-field-option-style-"],
+.wpforms-field-option-video-wall .active + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-inner,
+.wpforms-field-option-video-recorder .active + [id^="wpforms-field-option-style-"],
+.wpforms-field-option-video-recorder .active + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-inner {
+	display: block;
+	padding-top: 20px;
+}
+.wpforms-field-option-video-player .active + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle,
+.wpforms-field-option-video-wall .active + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle,
+.wpforms-field-option-video-recorder .active + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle {
+	display: block;
+	position: absolute;
+	pointer-events: none;
+	top: -20px;
+	left: 0;
+}
+.wpforms-field-option-video-player .wpforms-field-option-group:not(.active) + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle,
+.wpforms-field-option-video-wall .wpforms-field-option-group:not(.active) + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle,
+.wpforms-field-option-video-recorder .wpforms-field-option-group:not(.active) + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle {
+	display: none;
+}
+
+/* When logic is shown */
+
+.wpforms-field-option-video-player .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"],
+.wpforms-field-option-video-player .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-inner,
+.wpforms-field-option-video-wall .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"],
+.wpforms-field-option-video-wall .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-inner, 
+.wpforms-field-option-video-recorder .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"],
+.wpforms-field-option-video-recorder .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-inner {
+    	display: block;
+	padding-top: 20px;
+}
+.wpforms-field-option-video-player .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle,
+.wpforms-field-option-video-wall .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle,
+.wpforms-field-option-video-recorder .wpforms-field-option-group-advanced.active + div + [id^="wpforms-field-option-style-"] .wpforms-field-option-group-toggle {
+	display: block;
+	position: absolute;
+	pointer-events: none;
+	top: -20px;
+	left: 0;
+}

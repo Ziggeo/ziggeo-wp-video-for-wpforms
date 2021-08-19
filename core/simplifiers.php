@@ -24,6 +24,15 @@ function ziggeowpforms_create_builder_option_field($field_id, $field_class_mark,
 			data-field-id="<?php echo $field_id; ?>">
 		<label for="wpforms-field-option-<?php echo $field_id; ?>-<?php echo $field_class_mark; ?>"><?php echo $label; ?></label>
 		<?php
+
+			// Being safe
+			$field_info['placeholder'] = (isset($field_info['placeholder'])) ? $field_info['placeholder'] : '';
+			$field_info['type'] = (isset($field_info['type'])) ? $field_info['type'] : '';
+			$field_info['class'] = (isset($field_info['class'])) ? $field_info['class'] : '';
+			$field_info['value'] = (isset($field_info['value'])) ? $field_info['value'] : '';
+			$field_info['name'] = (isset($field_info['name'])) ? $field_info['name'] : '';
+
+
 			if($field_info['html_type'] === 'input') {
 				?>
 				<input type="<?php echo $field_info['type']; ?>"

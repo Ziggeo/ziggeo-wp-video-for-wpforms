@@ -2,8 +2,8 @@
 Contributors: oliverfriedmann, baned, carloscsz409, natashacalleia
 Tags: ziggeo, video, video field, form builder, video form, WPForms
 Requires at least: 3.0.1
-Tested up to: 5.6
-Stable tag: 1.8.1
+Tested up to: 5.8
+Stable tag: 1.9
 Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -81,10 +81,14 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 
 == Upgrade Notice ==
 
-= 1.8.1 =
-* Fixed: The endless resizing was happening on Chrome. This resolves the same issue by doing double checks.
+= 1.9 =
+* Fixed: Starting with WPForms 1.6.8.1 the options were not readable due to how the menu is built. We have added CSS that is loaded only on admin side to help with this builder issue.
+* Fixed: Added additional check for the values when creating fields because for some fields that was possibility of seeing some errors in the form builder (admin side only)
 
 == Changelog ==
+
+= 1.8.1 =
+* Fixed: The endless resizing was happening on Chrome. This resolves the same issue by doing double checks.
 
 = 1.8 =
 * Fixed: Added a change to iframe resizing to make it resized properly.
