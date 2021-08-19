@@ -3,4 +3,11 @@
 */
 .wpforms-form .ziggeowpforms_placeholder > iframe {
     width: 100%;
+    min-height: 200px;
+}
+/* specific fix for smaller screen size within iframe */
+#embedding .ba-recorder-theme-modern div.ba-videorecorder-controlbar {
+    padding-left: 0;
+    box-sizing: border-box;
+    padding-right: 0;
 }

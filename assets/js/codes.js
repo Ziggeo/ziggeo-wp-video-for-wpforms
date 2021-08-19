@@ -29,6 +29,15 @@
 		//Create dynamic iframe
 		var iframe = document.createElement('iframe');
 
+		// Add various allow params
+		iframe.setAttribute('allow', 'speakers *; autoplay *; fullscreen *; microphone *; camera *; usermedia *; display-capture *;');
+		iframe.setAttribute('allowspeakers', true);
+		iframe.setAttribute('allowautoplay', true);
+		iframe.setAttribute('allowfullscreen', true);
+		iframe.setAttribute('allowmicrophone', true);
+		iframe.setAttribute('allowcamera', true);
+		iframe.setAttribute('allowusermedia', true);
+
 		//1. Grab the WP Ziggeo codes
 		//var resources_info = ziggeo_p_assets_prepare_raw(); (PHP ONLY - skip for now to do a proper POC)
 
@@ -170,6 +179,19 @@
 
 		//Just to make sure that resizing does not happen because of our resizing..happens in Chrome only.
 		if(current_height === height && current_height >= (iframe_element.getBoundingClientRect().width / 2)) {
+			return false;
+		}
+
+		//Additional check just to make sure that our embedding never grows too large because this seems to happen in some scenarios and on some devices
+		// Note: This specific check makes sure that the portrait layout is enabled.
+		if(current_height >= (iframe_element.getBoundingClientRect().width * 2)) {
+			return false;
+		}
+
+		// This is a catch all break if there was ever a reason for the size to be super large
+		// At the moment 720p and 1080p are something normal to find.
+		// We might break it for 4K recording, however if you do have such, please reach out to us to up this a bit more
+		if(current_height > 1080) {
 			return false;
 		}
 

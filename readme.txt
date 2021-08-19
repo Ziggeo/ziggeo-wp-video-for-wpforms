@@ -84,6 +84,8 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 = 1.9 =
 * Fixed: Starting with WPForms 1.6.8.1 the options were not readable due to how the menu is built. We have added CSS that is loaded only on admin side to help with this builder issue.
 * Fixed: Added additional check for the values when creating fields because for some fields that was possibility of seeing some errors in the form builder (admin side only)
+* Improvement: Added additional CSS to make the embedding shown properly on smaller screens. Also added additional code for iframe sizing so that it does not go off running with dynamic and hard cap on.
+* Fixed: Added codes that should be persent on iframe to help with various security limitations put on iframes by default
 
 == Changelog ==
 
