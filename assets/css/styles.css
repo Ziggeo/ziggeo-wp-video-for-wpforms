@@ -1,13 +1,54 @@
 /*
-    We have to be so precise because of the global rule in wpforms CSS
+	We have to be so precise because of the global rule in wpforms CSS
 */
 .wpforms-form .ziggeowpforms_placeholder > iframe {
-    width: 100%;
-    min-height: 200px;
+	width: 100%;
+	min-height: 200px;
 }
 /* specific fix for smaller screen size within iframe */
 #embedding .ba-recorder-theme-modern div.ba-videorecorder-controlbar {
-    padding-left: 0;
-    box-sizing: border-box;
-    padding-right: 0;
+	padding-left: 0;
+	box-sizing: border-box;
+	padding-right: 0;
+}
+
+/* Additional styles to help with the sizing and showing record button within iframe in a form, thanks Gaben for reporting */
+@media screen and (max-width: 450px) {
+	#embedding div.ba-videorecorder-controlbar {
+		width: 100%;
+		margin: 0;
+		box-sizing: border-box;
+		padding: 0;
+	}
+
+	#embedding div.ba-videorecorder-controlbar > div {
+		padding: 0;
+		width: 40px;
+	}
+	#embedding .ba-videorecorder-controlbar i, #embedding .ba-videorecorder-controlbar i::before {
+		font-size: 0.9em;
+		text-align: center;
+		padding: 0;
+		margin: 0;
+	}
+
+	#embedding div.ba-videorecorder-controlbar .ba-videorecorder-rightbutton-container {
+		width: auto;
+	}
+}
+
+@media screen and (max-width: 340px) {
+	#embedding div.ba-videorecorder-controlbar > div {
+		padding: 0;
+		width: 30px;
+		height: 30px;
+	}
+
+	#embedding div.ba-videorecorder-controlbar {
+		height: 34px;
+	}
+
+	#embedding .ba-videorecorder-controlbar i, #embedding .ba-videorecorder-controlbar i::before {
+		font-size: 0.7em;
+	}
 }

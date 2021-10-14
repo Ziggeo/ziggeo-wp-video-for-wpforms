@@ -12,6 +12,9 @@ function ziggeowpforms_global() {
 			function ziggeowpformsGetIframeHeaderCode() {
 				<?php
 					$code = ziggeo_p_assets_get_raw();
+					$code[] = array(
+						'css'	=> ZIGGEOWPFORMS_ROOT_URL . 'assets/css/styles.css'
+					);
 				?>
 				return '' +
 				<?php
