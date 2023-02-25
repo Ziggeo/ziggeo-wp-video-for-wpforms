@@ -1,14 +1,14 @@
 {
 	"wp": {
 		"required": "3.0.1",
-		"tested": "5.8.3",
+		"tested": "6.1.1",
 		"repo_url": "",
 		"alternative_repo_url": "https://github.com/Ziggeo/ziggeo-wp-video-for-wpforms"
 	},
 	"plugin": {
 		"name": "ziggeo-video-for-wpforms",
 		"title": "Ziggeo Video for WPForms",
-		"version": "1.10",
+		"version": "1.11",
 		"author": "Ziggeo",
 		"logo": "https://raw.githubusercontent.com/Ziggeo/ziggeo-wp-video-for-wpforms/master/assets/images/logo.png",
 		"contributors": "oliverfriedmann, baned, carloscsz409",

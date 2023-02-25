@@ -18,10 +18,15 @@
 	//Function to create an iframe to hold our embedding on the front page, allowing us to make them present without the WPForms changing the way it looks
 	function ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameters_code) {
 
-		if(typeof ziggeowpformsGetIframeHeaderCode === 'undefined' || typeof ZiggeoWP === 'undefined') {
-			window.addEventListener('load', function() {
+		// Support for delayed load as well as for lazy load feature
+		if(typeof ziggeowpformsGetIframeHeaderCode === 'undefined' ||
+		   typeof ZiggeoWP === 'undefined'                         ||
+		   typeof ZiggeoApi === 'undefined'                        ||
+		   typeof ziggeoRestoreTextValues === 'undefined') {
+
+			setTimeout(function() {
 				return ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameters_code);
-			});
+			}, 200);
 
 			return;
 		}
@@ -41,11 +46,20 @@
 		//1. Grab the WP Ziggeo codes
 		//var resources_info = ziggeo_p_assets_prepare_raw(); (PHP ONLY - skip for now to do a proper POC)
 
-		var code = '<script src="' + ZiggeoWP.url_jquery + '"></script>';
+		var code = '<!DOCTYPE html><html><head>';
 
-		code += '<script>var ZiggeoWP = parent.ZiggeoWP;</script>';
+		code += '<script src="' + ZiggeoWP.url_jquery + '"></script>';
+
+		code += '<script>var ZiggeoWP = parent.ZiggeoWP;';
+		code += 'ZiggeoWP.hooks._hooks = {};';
+		code += '</script>';
+
 
 		code += ziggeowpformsGetIframeHeaderCode();
+
+		if(typeof ziggeo_dev !== undefined) {
+			code += '<script>var ziggeo_dev=' + ((ziggeo_dev === true) ? 'true': 'false') + '</script>';
+		}
 
 		code += '<script>' +
 					'var ziggeo_app = new ZiggeoApi.V2.Application(' + JSON.stringify(ziggeoGetApplicationOptions()) + ');' +
@@ -59,14 +73,19 @@
 
 			//jQuery is not within the iframe, so this helps
 			code = code.replace( new RegExp('jQuery(document).ready('.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), "g"), 'window.addEventListener("load",' );
+			code += '</head><body>';
 
 		}
 		else if(embedding_tag === 'ziggeotemplate') {
+			code += '</head><body>';
 			code += parameters_code;
 		}
 		else {
+			code += '</head><body>';
 			code += '<' + embedding_tag + ' id="embedding" ' + parameters_code + '></' + embedding_tag + '>';
 		}
+
+		code += '</body></html>';
 
 		//Get all elements that need to get the iframe
 		var placeholder = document.getElementById(element_id);
@@ -76,7 +95,7 @@
 			setTimeout(function(){
 				ziggeowpformsCreateIframeEmbedding(element_id, embedding_tag, parameters_code)
 				return true;
-			}, 2000);
+			}, 500);
 
 			return false;
 		}
@@ -95,6 +114,7 @@
 		iframe.addEventListener('load', function(e) {
 			//remove the borders
 			var _iframe = this;
+			document = _iframe.contentDocument;
 
 			ziggeowpforms_iframe_noscroll(_iframe);
 
@@ -102,6 +122,8 @@
 
 				//Set the height one more time
 				ziggeowpforms_iframe_noscroll(_iframe);
+
+				var watch_for_resize = null;
 
 				var embedding = _iframe.contentDocument.getElementById('embedding');
 
@@ -134,6 +156,8 @@
 						});
 
 					});
+
+					watch_for_resize = embedding.firstChild;
 				}
 				else if(embedding_tag === 'ziggeoplayer') {
 
@@ -142,17 +166,26 @@
 					embedding_object.on('ended', function() {
 						placeholder.previousElementSibling.value = 'seen';
 					});
+
+					watch_for_resize = embedding.firstChild;
+				}
+				else if(embedding_tag === 'ziggeovideowall') {
+
+					embedding = _iframe.contentDocument.getElementsByClassName('ziggeo_videoWall')[0];
+					watch_for_resize = embedding;
 				}
 
 				//Make sure we are keeping it up to date
 				new ResizeObserver(function() {
 					ziggeowpforms_iframe_noscroll(_iframe);
-				}).observe(embedding.firstChild);
+				}).observe(watch_for_resize);
 
-				//Addition, while the bug is in affect: https://bugzilla.mozilla.org/show_bug.cgi?id=1689099
-				embedding.firstChild.addEventListener('pointerover', function() {
-					ziggeowpforms_iframe_noscroll(_iframe, embedding.firstChild.getBoundingClientRect().height.toFixed());
-				});
+				if(embedding_tag !== 'ziggeovideowall') {
+					//Addition, while the bug is in affect: https://bugzilla.mozilla.org/show_bug.cgi?id=1689099
+					embedding.firstChild.addEventListener('pointerover', function() {
+						ziggeowpforms_iframe_noscroll(_iframe, embedding.firstChild.getBoundingClientRect().height.toFixed());
+					});
+				}
 			}, 2000);
 
 			window.ziggeowpformsSaveToken();

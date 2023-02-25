@@ -38,27 +38,52 @@ class WPForms_Field_Video_Template extends WPForms_Field {
 		$primary['data']['form-id']  = $form_data['id'];
 		$primary['data']['field-id'] = $field['id'];
 
-		?>
-		<?php
-			// Primary field.
-			// This way we can save the code we got back into a field and make it work with all the usual form conditions while our embedding field is shown andn not saved
-			printf(
-				'<input type="hidden" %s %s>',
-				wpforms_html_attributes( $primary['id'], $primary['class'], $primary['data'], $primary['attr'] ),
-				$primary['required']
-			);
+		// Primary field.
+		// This way we can save the code we got back into a field and make it work with all the usual form conditions while our embedding field is shown andn not saved
+		printf(
+			'<input type="hidden" %s %s>',
+			wpforms_html_attributes( $primary['id'], $primary['class'], $primary['data'], $primary['attr'] ),
+			$primary['required']
+		);
+
+		$replace = array();
+		$replace[] = array(
+			'from'	=> '<',
+			'to'	=> '&lt;'
+		);
+		$replace[] = array(
+			'from'	=> '>',
+			'to'	=> '&gt;'
+		);
+
+		// Support for lazy load option
+		if(!defined('ZIGGEO_FOUND')) {
+			define('ZIGGEO_FOUND', true);
+		}
+
+		echo ziggeo_p_get_lazyload_activator();
+
+		if(!defined('ZIGGEO_FOUND_POST')) {
+			define('ZIGGEO_FOUND_POST', true);
+		}
+
+		$template_code = ziggeo_clean_text_values(ziggeo_line_min(ziggeo_p_content_ziggeotemplate_parser( '[ziggeotemplate ' . $field['template_name'] . ']')), $replace);
+
+		$the_type = (videowallsz_p_is_videowall_code($template_code) === true) ? 'ziggeovideowall' : 'ziggeotemplate' ;
 
 		?>
 		<div id="ziggeowpforms-template-<?php echo $field['id']; ?>" class="ziggeowpforms_placeholder ziggeowpforms-templates"></div>
 		<script>
 			window.addEventListener('load', function() {
 				ziggeowpformsCreateIframeEmbedding('ziggeowpforms-template-<?php echo $field['id']; ?>',
-													'ziggeotemplate',
-													'<?php echo ziggeo_p_content_parse_templates( '[ziggeo ' . ziggeo_p_template_params($field['template_name']), '[ziggeo ' . ziggeo_p_template_params($field['template_name']) ); ?>'
+													'<?php echo $the_type; ?>',
+													'<?php echo $template_code; ?>'
 				);
 			});
 		</script>
 		<?php
+
+													//'< ? php echo ziggeo_p_content_parse_templates( '[ziggeo ' . ziggeo_p_template_params($field['template_name']), '[ziggeo ' . ziggeo_p_template_params($field['template_name']) ); ? >'
 	}
 
 	///////////////////////////////
@@ -152,7 +177,7 @@ class WPForms_Field_Video_Template extends WPForms_Field {
 			'html_type' 	=> 'select',
 			'class'			=> 'ziggeowpforms-template-option',
 			'name'			=> 'template_name',
-			'value'			=> $field['template_name'],
+			'value'			=> isset($field['template_name']) ? $field['template_name']: '',
 			'options'		=> $templates
 		]);
 

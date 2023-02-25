@@ -81,6 +81,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 
 	// Field options panel inside the builder
 	public function field_options( $field ) {
+
 		// Basic field options.
 		//wpforms/includes/fields/class-base.php
 
@@ -111,7 +112,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'type'			=> 'text',
 				'class'			=> '',
 				'name'			=> 'video_token',
-				'value'			=> $field['video_token'],
+				'value'			=> isset($field['video_token']) ? $field['video_token'] : '',
 				'placeholder'	=> 'Enter video token for playback'
 			]);
 
@@ -134,7 +135,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'html_type' 	=> 'select',
 				'class'			=> 'ziggeowpforms-player-option',
 				'name'			=> 'theme',
-				'value'			=> $field['theme'],
+				'value'			=> isset($field['theme']) ? $field['theme'] : '',
 				'placeholder'	=> 'Select the theme',
 				'options'		=> array('Default', 'Modern', 'Cube', 'Space', 'Minimalist', 'Elevate', 'Theatre')
 			]);
@@ -144,7 +145,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'html_type' 	=> 'select',
 				'class'			=> 'ziggeowpforms-player-option',
 				'name'			=> 'theme_color',
-				'value'			=> $field['theme_color'],
+				'value'			=> isset($field['theme_color']) ? $field['theme_color'] : '',
 				'placeholder'	=> 'Select the theme color',
 				'options'		=> array('Blue', 'Green', 'Red')
 			]);
@@ -159,7 +160,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-player-option',
 				'type'			=> 'text',
 				'name'			=> 'width',
-				'value'			=> $field['width'],
+				'value'			=> isset($field['width']) ? $field['width'] : '100%',
 				'placeholder'	=> 'Set player width on your form'
 			]);
 
@@ -173,7 +174,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-player-option',
 				'type'			=> 'text',
 				'name'			=> 'height',
-				'value'			=> $field['height'],
+				'value'			=> isset($field['height']) ? $field['height'] : null,
 				'placeholder'	=> 'Set player height on your form'
 			]);
 
@@ -203,7 +204,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-player-option',
 				'type'			=> 'number',
 				'name'			=> 'popup_width',
-				'value'			=> $field['popup_width'],
+				'value'			=> isset($field['popup_width']) ? $field['popup_width'] : '100%',
 				'placeholder'	=> 'Set player popup width on your form'
 			]);
 
@@ -217,7 +218,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-player-option',
 				'type'			=> 'number',
 				'name'			=> 'popup_height',
-				'value'			=> $field['popup_height'],
+				'value'			=> isset($field['popup_height']) ? $field['popup_height'] : '',
 				'placeholder'	=> 'Set player popup height on your form'
 			]);
 
@@ -241,7 +242,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-player-option',
 				'type'			=> 'text',
 				'name'			=> 'effect_profiles',
-				'value'			=> $field['effect_profiles'],
+				'value'			=> isset($field['effect_profiles']) ? $field['effect_profiles'] : '',
 				'placeholder'	=> 'Effect Profile Token'
 			]);
 
@@ -251,7 +252,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-player-option',
 				'type'			=> 'text',
 				'name'			=> 'video_profile',
-				'value'			=> $field['video_profile'],
+				'value'			=> isset($field['video_profile']) ? $field['video_profile'] : '',
 				'placeholder'	=> 'Video Profile Token'
 			]);
 
@@ -261,7 +262,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-player-option',
 				'type'			=> 'text',
 				'name'			=> 'client_auth',
-				'value'			=> $field['client_auth'],
+				'value'			=> isset($field['client_auth']) ? $field['client_auth'] : '',
 				'placeholder'	=> 'Add Client Auth token'
 			]);
 
@@ -271,7 +272,7 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-player-option',
 				'type'			=> 'text',
 				'name'			=> 'server_auth',
-				'value'			=> $field['server_auth'],
+				'value'			=> isset($field['server_auth']) ? $field['server_auth'] : '',
 				'placeholder'	=> 'Add Server Auth token'
 			]);
 
@@ -299,6 +300,17 @@ class WPForms_Field_Video_Player extends WPForms_Field {
 
 		// Description.
 		$this->field_preview_option( 'description', $field );
+
+		// Support for lazy load option
+		if(!defined('ZIGGEO_FOUND')) {
+			define('ZIGGEO_FOUND', true);
+		}
+
+		echo ziggeo_p_get_lazyload_activator();
+
+		if(!defined('ZIGGEO_FOUND_POST')) {
+			define('ZIGGEO_FOUND_POST', true);
+		}
 	}
 
 	// Formats and sanitizes field when submitted on public side

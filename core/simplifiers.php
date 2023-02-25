@@ -96,6 +96,10 @@ function ziggeowpforms_create_builder_option_field($field_id, $field_class_mark,
 //Create the section in the builder field properties
 function ziggeowpforms_create_builder_option_section($section_name, $section_title, $field_id, $status = 'open') {
 
+	if(!defined('ZIGGEO_FOUND')) { define('ZIGGEO_FOUND', true); }
+	echo ziggeo_p_get_lazyload_activator();
+	if(!defined('ZIGGEO_FOUND_POST')) { define('ZIGGEO_FOUND_POST', true); }
+
 	if($status === 'open') {
 		?>
 			<div class="wpforms-field-option-group wpforms-field-option-group-<?php echo $section_name; ?> wpforms-hide" id="wpforms-field-option-<?php echo $section_name; ?>-<?php echo $field_id; ?>">

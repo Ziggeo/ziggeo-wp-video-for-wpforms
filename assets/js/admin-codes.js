@@ -32,8 +32,16 @@ jQuery(document).on('wpformsFieldUpdate', function(e, fields) {
 	}
 });
 
-//Adds the token to embedding once it is added within the foe;ds
+//Adds the token to embedding once it is added within the settings
 function ziggeoWPFormsPlayerUpdate(info) {
+
+	if(typeof ZiggeoApi === 'undefined') {
+		setTimeout(function() {
+			ziggeoWPFormsPlayerUpdate(info);
+		}, 200);
+		return false;
+	}
+
 	//get the embedding
 	var embedding = ZiggeoApi.V2.Player.findByElement(
 		document.getElementById( 'wpforms-field-' + info.id ).getElementsByTagName('ziggeoplayer')[0]
@@ -101,6 +109,14 @@ function ziggeoWPFormsPlayerUpdate(info) {
 }
 
 function ziggeoWPFormsRecorderUpdate(info) {
+
+	if(typeof ZiggeoApi === 'undefined') {
+		setTimeout(function() {
+			ziggeoWPFormsRecorderUpdate(info);
+		}, 200);
+		return false;
+	}
+
 	//get the embedding
 	var embedding = ZiggeoApi.V2.Recorder.findByElement(
 		document.getElementById( 'wpforms-field-' + info.id ).getElementsByTagName('ziggeorecorder')[0]

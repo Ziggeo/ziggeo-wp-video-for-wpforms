@@ -38,15 +38,13 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 		$primary['data']['form-id']  = $form_data['id'];
 		$primary['data']['field-id'] = $field['id'];
 
-		?>
-		<?php
-			// Primary field.
-			// This way we can save the code we got back into a field and make it work with all the usual form conditions while our embedding field is shown andn not saved
-			printf(
-				'<input type="hidden" %s %s>',
-				wpforms_html_attributes( $primary['id'], $primary['class'], $primary['data'], $primary['attr'] ),
-				$primary['required']
-			);
+		// Primary field.
+		// This way we can save the code we got back into a field and make it work with all the usual form conditions while our embedding field is shown andn not saved
+		printf(
+			'<input type="hidden" %s %s>',
+			wpforms_html_attributes( $primary['id'], $primary['class'], $primary['data'], $primary['attr'] ),
+			$primary['required']
+		);
 
 		?>
 		<div id="ziggeowpforms-videowall-<?php echo $field['id']; ?>" class="ziggeowpforms_placeholder"></div>
@@ -110,7 +108,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'html_type' 	=> 'input',
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'title',
-				'value'			=> $field['title'],
+				'value'			=> isset($field['title']) ? $field['title'] : '',
 				'placeholder'	=> 'Select the title',
 				'type'			=> 'text'
 			]);
@@ -150,7 +148,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'html_type' 	=> 'input',
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'videowidth',
-				'value'			=> $field['videowidth'],
+				'value'			=> isset($field['videowidth']) ? $field['videowidth'] : '',
 				'placeholder'	=> 'Leave empty for auto',
 				'type'			=> 'text'
 			]);
@@ -160,7 +158,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'html_type' 	=> 'input',
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'videoheight',
-				'value'			=> $field['videoheight'],
+				'value'			=> isset($field['videoheight']) ? $field['videoheight'] : '',
 				'placeholder'	=> 'Leave empty for auto',
 				'type'			=> 'text'
 			]);
@@ -170,7 +168,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'html_type' 	=> 'input',
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'videos_per_page',
-				'value'			=> $field['videos_per_page'],
+				'value'			=> isset($field['videos_per_page']) ? $field['videos_per_page'] : '',
 				'placeholder'	=> 'Leave empty for auto',
 				'type'			=> 'text'
 			]);
@@ -220,7 +218,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'html_type' 	=> 'select',
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'no_videos',
-				'value'			=> $field['no_videos'],
+				'value'			=> isset($field['no_videos']) ? $field['no_videos'] : '',
 				'options'		=> ['ShowMessage', "ShowTemplate", "HideWall"]
 			]);
 
@@ -229,7 +227,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'html_type' 	=> 'input',
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'message',
-				'value'			=> $field['message'],
+				'value'			=> isset($field['message']) ? $field['message'] : '',
 				'type'			=> 'text'
 			]);
 
@@ -238,7 +236,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'html_type' 	=> 'input',
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'template_name',
-				'value'			=> $field['template_name'],
+				'value'			=> isset($field['template_name']) ? $field['template_name'] : '',
 				'type'			=> 'text'
 			]);
 
@@ -247,7 +245,7 @@ class WPForms_Field_Video_Wall extends WPForms_Field {
 				'html_type' 	=> 'select',
 				'class'			=> 'ziggeowpforms-videowall-option',
 				'name'			=> 'show_videos',
-				'value'			=> $field['show_videos'],
+				'value'			=> isset($field['show_videos']) ? $field['show_videos'] : 'Default',
 				'options'		=> array('Default', 'All', 'Approved', 'Rejected', 'Pending')
 			]);
 

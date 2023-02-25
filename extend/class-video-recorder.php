@@ -141,7 +141,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'html_type' 	=> 'select',
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'name'			=> 'theme',
-				'value'			=> $field['theme'],
+				'value'			=> isset($field['theme']) ? $field['theme'] : '',
 				'placeholder'	=> 'Select the theme',
 				'options'		=> array('Default', 'Modern', 'Cube', 'Space', 'Minimalist', 'Elevate', 'Theatre')
 			]);
@@ -151,7 +151,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'html_type' 	=> 'select',
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'name'			=> 'theme_color',
-				'value'			=> $field['theme_color'],
+				'value'			=> isset($field['theme_color']) ? $field['theme_color'] : '',
 				'placeholder'	=> 'Select the theme color',
 				'options'		=> array('Blue', 'Green', 'Red')
 			]);
@@ -348,7 +348,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'effect_profiles',
-				'value'			=> $field['effect_profiles'],
+				'value'			=> isset($field['effect_profiles']) ? $field['effect_profiles'] : '',
 				'placeholder'	=> 'Effect Profile Token'
 			]);
 
@@ -358,7 +358,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'video_profile',
-				'value'			=> $field['video_profile'],
+				'value'			=> isset($field['video_profile']) ? $field['video_profile'] : '',
 				'placeholder'	=> 'Video Profile Token'
 			]);
 
@@ -368,7 +368,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'meta_profile',
-				'value'			=> $field['meta_profile'],
+				'value'			=> isset($field['meta_profile']) ? $field['meta_profile'] : '',
 				'placeholder'	=> 'Meta Profile Token'
 			]);
 
@@ -378,7 +378,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'client_auth',
-				'value'			=> $field['client_auth'],
+				'value'			=> isset($field['client_auth']) ? $field['client_auth'] : '',
 				'placeholder'	=> 'Add Client Auth token'
 			]);
 
@@ -388,7 +388,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'server_auth',
-				'value'			=> $field['server_auth'],
+				'value'			=> isset($field['server_auth']) ? $field['server_auth'] : '',
 				'placeholder'	=> 'Add Server Auth token'
 			]);
 
@@ -410,7 +410,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'video_title',
-				'value'			=> $field['video_title'],
+				'value'			=> isset($field['video_title']) ? $field['video_title'] : '',
 				'placeholder'	=> 'Video title'
 			]);
 
@@ -420,7 +420,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'video_description',
-				'value'			=> $field['video_description'],
+				'value'			=> isset($field['video_description']) ? $field['video_description'] : '',
 				'placeholder'	=> 'Video Description'
 			]);
 
@@ -430,7 +430,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'video_tags',
-				'value'			=> $field['video_tags'],
+				'value'			=> isset($field['video_tags']) ? $field['video_tags'] : '',
 				'placeholder'	=> 'Video Tags'
 			]);
 
@@ -440,7 +440,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 				'class'			=> 'ziggeowpforms-recorder-option',
 				'type'			=> 'text',
 				'name'			=> 'custom_data',
-				'value'			=> $field['custom_data'],
+				'value'			=> isset($field['custom_data']) ? $field['custom_data'] : '',
 				'placeholder'	=> 'Custom data'
 			]);
 
@@ -491,6 +491,17 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 
 		// Description.
 		$this->field_preview_option( 'description', $field );
+
+		// Support for lazy load option
+		if(!defined('ZIGGEO_FOUND')) {
+			define('ZIGGEO_FOUND', true);
+		}
+
+		echo ziggeo_p_get_lazyload_activator();
+
+		if(!defined('ZIGGEO_FOUND_POST')) {
+			define('ZIGGEO_FOUND_POST', true);
+		}
 	}
 
 	// Formats and sanitizes field when submitted on public side
