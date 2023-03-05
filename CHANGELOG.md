@@ -3,6 +3,10 @@ This file contains the change log info for the `Ziggeo Video For WPForms` (WPFor
 
 =======
 
+= 1.11 =
+* Improvement: Updated to support lazyload feature of Ziggeo core plugin
+* Fixed: Moved the field in VideoWall settings that might have been covering other tabs
+* Fixed: If some values were not provided errors could be logged in the error log due to missing index. Added checks to make sure the value is there before it is being used.
 
 = 1.10 =
 * Fixed: Additional sizing CSS has been added to the plugin, making sure that the smaller devices can show the recorder properly. Thank you Gaben for reporting.

@@ -3,7 +3,7 @@ Contributors: oliverfriedmann, baned, carloscsz409, natashacalleia
 Tags: ziggeo, video, video field, form builder, video form, WPForms
 Requires at least: 3.0.1
 Tested up to: 6.1.1
-Stable tag: 1.11
+Stable tag: 1.12
 Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -86,10 +86,8 @@ Please go to our [WordPress forum](https://support.ziggeo.com/hc/en-us/community
 
 == Upgrade Notice ==
 
-= 1.11 =
-* Improvement: Updated to support lazyload feature of Ziggeo core plugin
-* Fixed: Moved the field in VideoWall settings that might have been covering other tabs
-* Fixed: If some values were not provided errors could be logged in the error log due to missing index. Added checks to make sure the value is there before it is being used.
+= 1.12 =
+* Improvement: Updated the way we use the lazyload feature so it is all in same location and with additional check that helps if the core version is not 3.0
 
 == Changelog ==
 

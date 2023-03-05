@@ -8,7 +8,7 @@
 	"plugin": {
 		"name": "ziggeo-video-for-wpforms",
 		"title": "Ziggeo Video for WPForms",
-		"version": "1.11",
+		"version": "1.12",
 		"author": "Ziggeo",
 		"logo": "https://raw.githubusercontent.com/Ziggeo/ziggeo-wp-video-for-wpforms/master/assets/images/logo.png",
 		"contributors": "oliverfriedmann, baned, carloscsz409",

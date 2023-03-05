@@ -57,15 +57,7 @@ class WPForms_Field_Video_Template extends WPForms_Field {
 		);
 
 		// Support for lazy load option
-		if(!defined('ZIGGEO_FOUND')) {
-			define('ZIGGEO_FOUND', true);
-		}
-
-		echo ziggeo_p_get_lazyload_activator();
-
-		if(!defined('ZIGGEO_FOUND_POST')) {
-			define('ZIGGEO_FOUND_POST', true);
-		}
+		echo ziggeowpforms_lazyload_support();
 
 		$template_code = ziggeo_clean_text_values(ziggeo_line_min(ziggeo_p_content_ziggeotemplate_parser( '[ziggeotemplate ' . $field['template_name'] . ']')), $replace);
 

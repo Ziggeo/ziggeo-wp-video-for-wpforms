@@ -493,15 +493,7 @@ class WPForms_Field_Video_Recorder extends WPForms_Field {
 		$this->field_preview_option( 'description', $field );
 
 		// Support for lazy load option
-		if(!defined('ZIGGEO_FOUND')) {
-			define('ZIGGEO_FOUND', true);
-		}
-
-		echo ziggeo_p_get_lazyload_activator();
-
-		if(!defined('ZIGGEO_FOUND_POST')) {
-			define('ZIGGEO_FOUND_POST', true);
-		}
+		echo ziggeowpforms_lazyload_support();
 	}
 
 	// Formats and sanitizes field when submitted on public side
